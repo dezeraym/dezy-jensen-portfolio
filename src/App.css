@@ -52,17 +52,14 @@
 
 /* Scroll reveal */
 .projects-section.reveal,
-.user-profile.reveal,
 .team-member-section.reveal {
   animation: scrollReveal 0.8s ease forwards;
 }
 
 .projects-section { opacity: 0; transform: translateY(24px); }
-.user-profile { opacity: 0; transform: translateY(24px); }
 .team-member-section { opacity: 0; transform: translateY(24px); }
 
 .projects-section.reveal { animation-delay: 0.1s; }
-.user-profile.reveal { animation-delay: 0.1s; }
 .team-member-section.reveal { animation-delay: 0.1s; }
 
 @keyframes scrollReveal {
@@ -122,11 +119,8 @@
   padding: 0 1.5rem;
 }
 
-.projects-section h2 {
-  font-size: 1.25rem;
-  color: var(--text-muted);
+.projects-section .section-title {
   margin-bottom: 1.5rem;
-  font-weight: 500;
 }
 
 .projects-grid {
@@ -181,36 +175,157 @@
   font-family: 'JetBrains Mono', monospace;
 }
 
-/* User Profile */
+/* User Profile / About */
 .user-profile {
-  max-width: 640px;
+  max-width: 800px;
   margin: 0 auto 3rem;
   padding: 0 1.5rem;
+  animation: heroEntrance 0.8s ease 0.2s forwards;
+  opacity: 0;
+  transform: translateY(20px);
 }
 
-.user-profile h2 {
+.section-title {
   font-size: 1.25rem;
   color: var(--text-muted);
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
   font-weight: 500;
 }
 
-.profile-card {
+/* About Hero - The Hook */
+.about-hero {
+  margin-bottom: 2rem;
+}
+
+.about-headline {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  font-weight: 700;
+  color: var(--text-bright);
+  line-height: 1.3;
+  margin: 0 0 0.75rem;
+  letter-spacing: -0.02em;
+}
+
+.about-pitch {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* About Stats - Quick Numbers */
+.about-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.about-stat {
+  text-align: center;
+  padding: 1rem 0.75rem;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  backdrop-filter: blur(8px);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.about-stat:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px var(--shadow);
+  border-color: color-mix(in srgb, var(--accent) 40%, var(--card-border));
+}
+
+.about-stat-value {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 0.25rem;
+}
+
+.about-stat-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Industry Tags */
+.about-industries {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.about-industry-tag {
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent) 15%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+  color: var(--accent);
+}
+
+/* About Card - Summary + Highlights */
+.about-card {
   background: var(--card-bg);
   border: 1px solid var(--card-border-strong);
   border-radius: 16px;
-  padding: 1.5rem;
+  padding: 1.75rem;
   backdrop-filter: blur(12px);
   box-shadow: 0 8px 32px var(--shadow);
+  position: relative;
+  overflow: hidden;
 }
 
-.profile-header {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 0.5rem;
+.about-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, #38bdf8, #a78bfa);
+  border-radius: 4px 0 0 4px;
 }
 
+.about-summary {
+  color: var(--text);
+  font-size: 1rem;
+  line-height: 1.7;
+  margin: 0 0 1.5rem;
+  padding-left: 0.5rem;
+}
+
+.about-highlights-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 0 0 0.75rem;
+  padding-left: 0.5rem;
+}
+
+.about-highlights-list {
+  margin: 0;
+  padding-left: 1.25rem;
+  color: var(--text);
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+.about-highlights-list li {
+  margin-bottom: 0.4rem;
+}
+
+/* Profile badge (used elsewhere) */
 .profile-badge {
   background: linear-gradient(135deg, #6366f1, #8b5cf6);
   color: white;
@@ -220,45 +335,6 @@
   border-radius: 6px;
 }
 
-.profile-card h3 {
-  font-size: 1.25rem;
-  margin: 0;
-  color: var(--text-bright);
-}
-
-.profile-summary {
-  color: var(--text);
-  margin: 1rem 0;
-  font-size: 0.95rem;
-  line-height: 1.6;
-}
-
-.profile-experience,
-.profile-education {
-  color: var(--text);
-  margin: 0.5rem 0;
-  font-size: 0.95rem;
-}
-
-.profile-industries,
-.profile-specialization {
-  color: var(--text-muted);
-  font-size: 0.9rem;
-  margin: 0.5rem 0;
-}
-
-.profile-highlights {
-  margin: 1rem 0 0;
-  padding-left: 1.25rem;
-  color: var(--text);
-  font-size: 0.9rem;
-  line-height: 1.6;
-}
-
-.profile-highlights li {
-  margin-bottom: 0.35rem;
-}
-
 /* Team Member Section */
 .team-member-section {
   max-width: 1200px;
@@ -266,11 +342,8 @@
   padding: 0 1.5rem 3rem;
 }
 
-.team-member-section h2 {
-  font-size: 1.25rem;
-  color: var(--text-muted);
+.team-member-section .section-title {
   margin-bottom: 1.5rem;
-  font-weight: 500;
 }
 
 .stats-grid {
@@ -527,6 +600,14 @@
 
 /* Responsive */
 @media (max-width: 640px) {
+  .about-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .about-headline {
+    font-size: 1.35rem;
+  }
+
   .hero {
     padding: 2rem 1rem 1.5rem;
   }

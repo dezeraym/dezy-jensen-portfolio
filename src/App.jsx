@@ -130,7 +130,6 @@ function App() {
   }, [])
 
   const [projectsRef, projectsVisible] = useScrollReveal(0.1)
-  const [aboutRef, aboutVisible] = useScrollReveal(0.1)
   const [skillsRef, skillsVisible] = useScrollReveal(0.05)
 
   return (
@@ -151,34 +150,54 @@ function App() {
         <p className="hero-subtitle">{userProfile.tagline}</p>
       </header>
 
-      <section ref={aboutRef} className={`user-profile ${aboutVisible ? 'reveal' : ''}`}>
-        <h2>About Me</h2>
-        <div className="profile-card">
-          <div className="profile-header">
-            <span className="profile-badge">Full Stack</span>
-            <h3>{userProfile.title}</h3>
+      <section className="user-profile">
+        <h2 className="section-title">About Me</h2>
+
+        <div className="about-hero">
+          <p className="about-headline">{userProfile.headline}</p>
+          <p className="about-pitch">{userProfile.pitch}</p>
+        </div>
+
+        <div className="about-stats">
+          <div className="about-stat">
+            <span className="about-stat-value">{userProfile.experience}</span>
+            <span className="about-stat-label">Experience</span>
           </div>
-          {userProfile.summary && (
-            <p className="profile-summary">{userProfile.summary}</p>
-          )}
-          <p className="profile-experience">{userProfile.experience} of experience</p>
-          <p className="profile-education">{userProfile.education}</p>
-          <div className="profile-industries">
-            <strong>Industries:</strong> {userProfile.industries.join(', ')}
+          <div className="about-stat">
+            <span className="about-stat-value">Physics</span>
+            <span className="about-stat-label">Background</span>
           </div>
-          <p className="profile-specialization">
-            <strong>Specialization:</strong> {userProfile.specialization}
-          </p>
-          <ul className="profile-highlights">
-            {userProfile.highlights.map((h, i) => (
-              <li key={i}>{h}</li>
-            ))}
-          </ul>
+          <div className="about-stat">
+            <span className="about-stat-value">{userProfile.industries.length}</span>
+            <span className="about-stat-label">Industries</span>
+          </div>
+          <div className="about-stat">
+            <span className="about-stat-value">Full Stack</span>
+            <span className="about-stat-label">Focus</span>
+          </div>
+        </div>
+
+        <div className="about-industries">
+          {userProfile.industries.map((ind) => (
+            <span key={ind} className="about-industry-tag">{ind}</span>
+          ))}
+        </div>
+
+        <div className="about-card">
+          <p className="about-summary">{userProfile.summary}</p>
+          <div className="about-highlights">
+            <h4 className="about-highlights-title">What I do</h4>
+            <ul className="about-highlights-list">
+              {userProfile.highlights.map((h, i) => (
+                <li key={i}>{h}</li>
+              ))}
+            </ul>
+          </div>
         </div>
       </section>
 
       <section ref={projectsRef} className={`projects-section ${projectsVisible ? 'reveal' : ''}`}>
-        <h2>What I've Built</h2>
+        <h2 className="section-title">What I've Built</h2>
         <div className="projects-grid">
           {projects.map((project) => (
             <TiltCard key={project.id} intensity={10}>
@@ -197,7 +216,7 @@ function App() {
       </section>
 
       <section ref={skillsRef} className={`team-member-section ${skillsVisible ? 'reveal' : ''}`}>
-        <h2>Skills Overview</h2>
+        <h2 className="section-title">Skills Overview</h2>
         <div className="stats-grid">
           <div className="stat-card">
             <span className="stat-value">{stats.total}</span>
