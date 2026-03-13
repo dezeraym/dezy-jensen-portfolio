@@ -158,6 +158,36 @@
   margin-bottom: 1rem;
 }
 
+.domain-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.domain-chip {
+  padding: 0.35rem 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  border-radius: 999px;
+  border: 1px solid var(--card-border);
+  background: var(--card-bg);
+  color: var(--text);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.domain-chip:hover {
+  border-color: var(--chip-color, var(--accent));
+  background: color-mix(in srgb, var(--chip-color, var(--accent)) 12%, transparent);
+}
+
+.domain-chip.active {
+  background: color-mix(in srgb, var(--chip-color, var(--accent)) 25%, transparent);
+  border-color: var(--chip-color, var(--accent));
+  color: var(--chip-color, var(--accent));
+}
+
 .search-box {
   position: relative;
   margin-bottom: 1rem;
@@ -227,18 +257,42 @@
   gap: 1rem;
 }
 
+.skills-grid .skill-card {
+  animation: cardFadeIn 0.3s ease backwards;
+}
+
+.skills-grid .skill-card:nth-child(1) { animation-delay: 0.02s; }
+.skills-grid .skill-card:nth-child(2) { animation-delay: 0.04s; }
+.skills-grid .skill-card:nth-child(3) { animation-delay: 0.06s; }
+.skills-grid .skill-card:nth-child(4) { animation-delay: 0.08s; }
+.skills-grid .skill-card:nth-child(5) { animation-delay: 0.1s; }
+.skills-grid .skill-card:nth-child(6) { animation-delay: 0.12s; }
+.skills-grid .skill-card:nth-child(n+7) { animation-delay: 0.14s; }
+
+@keyframes cardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .skill-card {
   background: var(--card-bg);
   border: 1px solid var(--card-border);
   border-left: 3px solid var(--domain-color, #64748b);
   border-radius: 12px;
   padding: 1rem;
-  transition: transform 0.15s, box-shadow 0.15s;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
 .skill-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px var(--shadow);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px var(--shadow);
+  border-color: color-mix(in srgb, var(--domain-color, #64748b) 50%, var(--card-border));
 }
 
 .skill-card-header {
@@ -303,6 +357,15 @@
     right: 1rem;
     padding: 0.4rem 0.75rem;
     font-size: 0.8rem;
+  }
+
+  .domain-chips {
+    gap: 0.4rem;
+  }
+
+  .domain-chip {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.75rem;
   }
 
   .filter-row {

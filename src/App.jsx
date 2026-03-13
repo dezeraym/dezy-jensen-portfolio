@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from 'react'
+import { useState, useMemo, useEffect, useRef } from 'react'
 import { dezySkills, userProfile } from './data/skills'
 import './App.css'
 
@@ -56,11 +56,30 @@ function App() {
   const [domainFilter, setDomainFilter] = useState('all')
   const [proficiencyFilter, setProficiencyFilter] = useState('all')
   const [sortBy, setSortBy] = useState('years')
+  const searchInputRef = useRef(null)
 
   useEffect(() => {
     localStorage.setItem(THEME_KEY, theme)
     document.documentElement.setAttribute('data-theme', theme)
   }, [theme])
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === '/' && !e.ctrlKey && !e.metaKey && !e.altKey) {
+        const target = e.target
+        if (!target || !['INPUT', 'TEXTAREA', 'SELECT'].includes(target.tagName)) {
+          e.preventDefault()
+          searchInputRef.current?.focus()
+        }
+      }
+      if (e.key === 'Escape') {
+        searchInputRef.current?.blur()
+        setSearch('')
+      }
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [])
 
   const domains = useMemo(() => {
     const d = [...new Set(dezySkills.map(s => s.domain))].sort()
@@ -165,12 +184,33 @@ function App() {
           <div className="search-box">
             <span className="search-icon">🔍</span>
             <input
+              ref={searchInputRef}
               type="text"
-              placeholder="Search skills..."
+              placeholder="Search skills... (press / to focus)"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               aria-label="Search skills"
             />
+          </div>
+          <div className="domain-chips">
+            <button
+              type="button"
+              className={`domain-chip ${domainFilter === 'all' ? 'active' : ''}`}
+              onClick={() => setDomainFilter('all')}
+            >
+              All
+            </button>
+            {domains.map(d => (
+              <button
+                key={d}
+                type="button"
+                className={`domain-chip ${domainFilter === d ? 'active' : ''}`}
+                style={{ '--chip-color': DOMAIN_COLORS[d] || '#64748b' }}
+                onClick={() => setDomainFilter(d)}
+              >
+                {d}
+              </button>
+            ))}
           </div>
           <div className="filter-row">
             <select
