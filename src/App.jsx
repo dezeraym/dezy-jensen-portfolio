@@ -1,5 +1,8 @@
 import { useState, useMemo, useEffect, useRef } from 'react'
-import { dezySkills, userProfile } from './data/skills'
+import { dezySkills, userProfile, projects } from './data/skills'
+import StarsBackground from './components/StarsBackground'
+import TiltCard from './components/TiltCard'
+import useScrollReveal from './hooks/useScrollReveal'
 import './App.css'
 
 const THEME_KEY = 'dezy-portfolio-theme'
@@ -34,6 +37,7 @@ function ProficiencyBadge({ level }) {
 function SkillCard({ skill }) {
   const domainColor = DOMAIN_COLORS[skill.domain] || '#64748b'
   return (
+    <TiltCard intensity={6}>
     <div className="skill-card" style={{ '--domain-color': domainColor }}>
       <div className="skill-card-header">
         <span className="skill-domain">{skill.domain}</span>
@@ -42,6 +46,7 @@ function SkillCard({ skill }) {
       <h3 className="skill-technology">{skill.technology}</h3>
       <p className="skill-meta">{skill.skillType} · {skill.years} yrs</p>
     </div>
+    </TiltCard>
   )
 }
 
@@ -114,15 +119,24 @@ function App() {
     return result
   }, [search, domainFilter, proficiencyFilter, sortBy])
 
-  const stats = useMemo(() => ({
-    total: dezySkills.length,
-    advanced: dezySkills.filter(s => s.proficiency === 'Advanced').length,
-    intermediate: dezySkills.filter(s => s.proficiency === 'Intermediate').length,
-    totalYears: dezySkills.reduce((sum, s) => sum + s.years, 0),
-  }), [])
+  const stats = useMemo(() => {
+    const domains = [...new Set(dezySkills.map(s => s.domain))]
+    return {
+      total: dezySkills.length,
+      advanced: dezySkills.filter(s => s.proficiency === 'Advanced').length,
+      intermediate: dezySkills.filter(s => s.proficiency === 'Intermediate').length,
+      domains: domains.length,
+    }
+  }, [])
+
+  const [projectsRef, projectsVisible] = useScrollReveal(0.1)
+  const [aboutRef, aboutVisible] = useScrollReveal(0.1)
+  const [skillsRef, skillsVisible] = useScrollReveal(0.05)
 
   return (
     <div className="app">
+      <StarsBackground />
+      <main className="app-content">
       <header className="hero">
         <button
           className="theme-toggle"
@@ -132,17 +146,40 @@ function App() {
         >
           {theme === 'dark' ? '☀️ Light' : '🌙 Dark'}
         </button>
-        <h1>Dezy Jensen</h1>
-        <p className="hero-subtitle">Skills Portfolio · Expertise at a glance</p>
+        <h1 className="hero-title">Dezy Jensen</h1>
+        <p className="hero-hook hero-hook-gradient">Physics → Code</p>
+        <p className="hero-subtitle">{userProfile.tagline}</p>
       </header>
 
-      <section className="user-profile">
+      <section ref={projectsRef} className={`projects-section ${projectsVisible ? 'reveal' : ''}`}>
+        <h2>What I've Built</h2>
+        <div className="projects-grid">
+          {projects.map((project) => (
+            <TiltCard key={project.id} intensity={10}>
+            <article className="project-card">
+              <h3>{project.title}</h3>
+              <p>{project.description}</p>
+              <div className="project-tech">
+                {project.tech.map((t) => (
+                  <span key={t} className="project-tag">{t}</span>
+                ))}
+              </div>
+            </article>
+            </TiltCard>
+          ))}
+        </div>
+      </section>
+
+      <section ref={aboutRef} className={`user-profile ${aboutVisible ? 'reveal' : ''}`}>
         <h2>About Me</h2>
         <div className="profile-card">
           <div className="profile-header">
             <span className="profile-badge">Full Stack</span>
             <h3>{userProfile.title}</h3>
           </div>
+          {userProfile.summary && (
+            <p className="profile-summary">{userProfile.summary}</p>
+          )}
           <p className="profile-experience">{userProfile.experience} of experience</p>
           <p className="profile-education">{userProfile.education}</p>
           <div className="profile-industries">
@@ -159,7 +196,7 @@ function App() {
         </div>
       </section>
 
-      <section className="team-member-section">
+      <section ref={skillsRef} className={`team-member-section ${skillsVisible ? 'reveal' : ''}`}>
         <h2>Skills Overview</h2>
         <div className="stats-grid">
           <div className="stat-card">
@@ -175,8 +212,8 @@ function App() {
             <span className="stat-label">Intermediate</span>
           </div>
           <div className="stat-card">
-            <span className="stat-value">{stats.totalYears}+</span>
-            <span className="stat-label">Total Years</span>
+            <span className="stat-value">{stats.domains}</span>
+            <span className="stat-label">Domains</span>
           </div>
         </div>
 
@@ -261,8 +298,14 @@ function App() {
       </section>
 
       <footer className="footer">
-        <p>Built with React · Ready for GitHub Pages</p>
+        <p>Dezy Jensen · Physics background, full stack builder</p>
+        <p className="footer-links">
+          <a href="https://github.com/dezeraym" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <span className="footer-sep">·</span>
+          <a href="https://www.linkedin.com/in/dezeraym" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        </p>
       </footer>
+      </main>
     </div>
   )
 }

@@ -66,18 +66,59 @@ export const dezySkills = [
   { domain: "Engineering", skillType: "Platform", technology: "Cordova", proficiency: "Basic", years: 1 },
 ];
 
+export const projects = [
+  {
+    id: 'auth',
+    title: 'IoT Auth Service',
+    description: 'OAuth 2.0 / JWT authorization service for IoT apps. Laravel Passport, Docker, deployed to AWS ECS/Fargate.',
+    tech: ['Laravel', 'OAuth', 'JWT', 'Docker', 'AWS ECS', 'Nginx'],
+  },
+  {
+    id: 'web-server',
+    title: 'Web Server',
+    description: 'Enterprise backend systems: C#/.NET servers, MQTT, SQL stored procedures, SSL clients, and IoT integrations.',
+    tech: ['C#', '.NET', 'MQTT', 'SQL', 'SSL/TLS'],
+  },
+  {
+    id: 'mobile',
+    title: 'IoT Mobile Apps',
+    description: 'iOS & Android apps for smart device control. MQTT, AWS IoT Core, Firebase push notifications.',
+    tech: ['Kotlin/Java', 'Swift', 'MQTT', 'AWS IoT', 'Firebase'],
+  },
+  {
+    id: 'stark',
+    title: 'Dealership Intake App',
+    description: 'Vehicle intake app for automotive dealerships. AngularJS, Cordova (iOS & Android), PHP backend, Twilio integrations.',
+    tech: ['AngularJS', 'Cordova', 'PHP', 'Twilio'],
+  },
+  {
+    id: 'oil-gas',
+    title: 'Oil & Gas Platform',
+    description: 'Platform subscribed to by 20+ leading companies. KPI analytics for frac and wireline operations, API monitoring tool—estimated operational cost savings up to $20M annually.',
+    tech: ['React', 'Python', 'API', 'Data Analytics'],
+  },
+  {
+    id: 'corrosion-ml',
+    title: 'Predictive Corrosion Software',
+    description: 'Led development of ML software that forecasts pipeline corrosion rates, potentially reducing operating costs by 15-25%. Worked in a team to build models; spearheaded 10+ key features to enhance predictive accuracy. Led client presentations and stakeholder consensus.',
+    tech: ['Python', 'Machine Learning', 'Data Analytics'],
+  },
+]
+
 export const userProfile = {
   name: "Dezy",
   title: "Full Stack Developer",
-  experience: "3+ years",
+  tagline: "From equations to code",
+  experience: "~5 years",
   education: "Bachelor of Science in Physics",
-  industries: ["Oil & Gas", "Hot Tub / IoT (iOS & Android apps)", "Automotive"],
+  industries: ["Oil & Gas", "IoT (iOS & Android apps)", "Automotive", "Education", "Research"],
   specialization: "Full Stack Development",
+  summary: "Software developer and trusted leader with ~5 years of experience building solutions across education, research, oil & gas, and IoT. Strategic problem solver and effective communicator, driven by continuous growth and delivering results that advance business success.",
   highlights: [
     "Building and maintaining iOS and Android apps with MQTT, Firebase, and AWS IoT",
-    "Backend architecture: Laravel, OAuth/JWT, REST APIs, and real-time systems (SignalR)",
+    "Backend architecture: Laravel, OAuth/JWT, REST APIs, and real-time systems",
     "Cloud deployment: AWS ECS/Fargate, ECR, S3, Lambda, and Azure Pipelines CI/CD",
-    "Full stack web: React, TypeScript, Vue, and .NET across dealer portals and auth services",
+    "Full stack web: React, TypeScript, Vue, and .NET across portals and auth services",
     "DevOps: Docker, Nginx, and automated deployment pipelines",
   ],
 };
