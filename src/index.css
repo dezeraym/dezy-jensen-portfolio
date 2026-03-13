@@ -4,6 +4,37 @@
   box-sizing: border-box;
 }
 
+:root,
+[data-theme="dark"] {
+  --app-bg: linear-gradient(160deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+  --text: #e2e8f0;
+  --text-bright: #f8fafc;
+  --text-muted: #94a3b8;
+  --card-bg: rgba(30, 41, 59, 0.6);
+  --card-border: rgba(148, 163, 184, 0.15);
+  --card-border-strong: rgba(148, 163, 184, 0.2);
+  --input-bg: rgba(30, 41, 59, 0.8);
+  --input-border: rgba(148, 163, 184, 0.25);
+  --accent: #38bdf8;
+  --footer: #64748b;
+  --shadow: rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="light"] {
+  --app-bg: linear-gradient(160deg, #f8fafc 0%, #e2e8f0 50%, #f1f5f9 100%);
+  --text: #334155;
+  --text-bright: #0f172a;
+  --text-muted: #64748b;
+  --card-bg: rgba(255, 255, 255, 0.9);
+  --card-border: rgba(148, 163, 184, 0.3);
+  --card-border-strong: rgba(148, 163, 184, 0.4);
+  --input-bg: rgba(255, 255, 255, 0.95);
+  --input-border: rgba(148, 163, 184, 0.4);
+  --accent: #0284c7;
+  --footer: #64748b;
+  --shadow: rgba(0, 0, 0, 0.08);
+}
+
 body {
   margin: 0;
   -webkit-font-smoothing: antialiased;

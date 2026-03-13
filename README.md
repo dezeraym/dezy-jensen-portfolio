@@ -1,6 +1,6 @@
-# Team Skills Portfolio
+# Dezy Jensen - Skills Portfolio
 
-A user-friendly static website showcasing team skills and expertise. Built with React + Vite, ready for GitHub Pages deployment.
+A user-friendly static website showcasing skills and expertise. Built with React + Vite, ready for GitHub Pages deployment.
 
 ## Features
 
@@ -29,37 +29,19 @@ Output goes to the `dist/` folder — ready to deploy anywhere.
 
 ## Deploy to GitHub Pages
 
-1. Push this repo to GitHub
-2. Go to **Settings → Pages**
-3. Source: **Deploy from a branch**
-4. Branch: `main` (or `master`), folder: `/ (root)` or **GitHub Actions**
-5. If using the root branch with `dist/`:
-   - Build locally: `npm run build`
-   - Push the `dist/` contents to a `gh-pages` branch, or use the [gh-pages](https://www.npmjs.com/package/gh-pages) package
+1. **Create a GitHub repo** named `dezy-jensen-portfolio`.
 
-**Using gh-pages package:**
-```bash
-npm install --save-dev gh-pages
-```
+2. **Update `package.json`** — replace all `YOUR_USERNAME` with your GitHub username (in `homepage`, `repository.url`, and the `deploy` script).
 
-Add to `package.json`:
-```json
-"homepage": "https://yourusername.github.io/team-skills-portfolio",
-"scripts": {
-  "predeploy": "npm run build",
-  "deploy": "gh-pages -d dist"
-}
-```
+3. **Push your code** to the repo, then run:
+   ```bash
+   npm run deploy
+   ```
+   This builds the site and pushes it to the `gh-pages` branch (no need to add a git remote first — the deploy script uses the repo URL directly).
 
-If your site is at `username.github.io/team-skills-portfolio`, update `vite.config.js`:
-```js
-base: '/team-skills-portfolio/',
-```
+4. **Enable Pages** — In your repo: **Settings → Pages** → Source: **Deploy from a branch** → Branch: `gh-pages` → Folder: `/ (root)` → Save.
 
-Then run:
-```bash
-npm run deploy
-```
+5. Your site will be live at `https://YOUR_USERNAME.github.io/dezy-jensen-portfolio` (may take 1–2 minutes).
 
 ## Tech Stack
 

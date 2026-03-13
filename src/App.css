@@ -1,11 +1,31 @@
 .app {
   min-height: 100vh;
-  background: linear-gradient(160deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
-  color: #e2e8f0;
+  background: var(--app-bg);
+  color: var(--text);
   font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.theme-toggle {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  color: var(--text);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.theme-toggle:hover {
+  border-color: var(--accent);
 }
 
 .hero {
+  position: relative;
   text-align: center;
   padding: 3rem 1.5rem 2rem;
 }
@@ -13,14 +33,14 @@
 .hero h1 {
   font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 700;
-  color: #f8fafc;
+  color: var(--text-bright);
   margin: 0 0 0.5rem;
   letter-spacing: -0.02em;
 }
 
 .hero-subtitle {
   font-size: 1.125rem;
-  color: #94a3b8;
+  color: var(--text-muted);
 }
 
 /* User Profile */
@@ -32,14 +52,14 @@
 
 .user-profile h2 {
   font-size: 1.25rem;
-  color: #94a3b8;
+  color: var(--text-muted);
   margin-bottom: 1rem;
   font-weight: 500;
 }
 
 .profile-card {
-  background: rgba(30, 41, 59, 0.6);
-  border: 1px solid rgba(148, 163, 184, 0.2);
+  background: var(--card-bg);
+  border: 1px solid var(--card-border-strong);
   border-radius: 16px;
   padding: 1.5rem;
 }
@@ -63,19 +83,19 @@
 .profile-card h3 {
   font-size: 1.25rem;
   margin: 0;
-  color: #f8fafc;
+  color: var(--text-bright);
 }
 
 .profile-experience,
 .profile-education {
-  color: #cbd5e1;
+  color: var(--text);
   margin: 0.5rem 0;
   font-size: 0.95rem;
 }
 
 .profile-industries,
 .profile-specialization {
-  color: #94a3b8;
+  color: var(--text-muted);
   font-size: 0.9rem;
   margin: 0.5rem 0;
 }
@@ -83,7 +103,7 @@
 .profile-highlights {
   margin: 1rem 0 0;
   padding-left: 1.25rem;
-  color: #cbd5e1;
+  color: var(--text);
   font-size: 0.9rem;
   line-height: 1.6;
 }
@@ -101,7 +121,7 @@
 
 .team-member-section h2 {
   font-size: 1.25rem;
-  color: #94a3b8;
+  color: var(--text-muted);
   margin-bottom: 1.5rem;
   font-weight: 500;
 }
@@ -114,8 +134,8 @@
 }
 
 .stat-card {
-  background: rgba(30, 41, 59, 0.6);
-  border: 1px solid rgba(148, 163, 184, 0.15);
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
   border-radius: 12px;
   padding: 1rem;
   text-align: center;
@@ -125,12 +145,12 @@
   display: block;
   font-size: 1.75rem;
   font-weight: 700;
-  color: #38bdf8;
+  color: var(--accent);
 }
 
 .stat-label {
   font-size: 0.8rem;
-  color: #94a3b8;
+  color: var(--text-muted);
 }
 
 /* Filters */
@@ -157,20 +177,20 @@
   max-width: 400px;
   padding: 0.75rem 1rem 0.75rem 2.75rem;
   font-size: 1rem;
-  background: rgba(30, 41, 59, 0.8);
-  border: 1px solid rgba(148, 163, 184, 0.25);
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
   border-radius: 10px;
-  color: #f8fafc;
+  color: var(--text-bright);
   outline: none;
   transition: border-color 0.2s;
 }
 
 .search-box input::placeholder {
-  color: #64748b;
+  color: var(--text-muted);
 }
 
 .search-box input:focus {
-  border-color: #38bdf8;
+  border-color: var(--accent);
 }
 
 .filter-row {
@@ -182,21 +202,21 @@
 .filter-row select {
   padding: 0.6rem 1rem;
   font-size: 0.9rem;
-  background: rgba(30, 41, 59, 0.8);
-  border: 1px solid rgba(148, 163, 184, 0.25);
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
   border-radius: 8px;
-  color: #e2e8f0;
+  color: var(--text);
   cursor: pointer;
   outline: none;
 }
 
 .filter-row select:focus {
-  border-color: #38bdf8;
+  border-color: var(--accent);
 }
 
 .results-count {
   font-size: 0.9rem;
-  color: #94a3b8;
+  color: var(--text-muted);
   margin-bottom: 1.5rem;
 }
 
@@ -208,8 +228,8 @@
 }
 
 .skill-card {
-  background: rgba(30, 41, 59, 0.6);
-  border: 1px solid rgba(148, 163, 184, 0.15);
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
   border-left: 3px solid var(--domain-color, #64748b);
   border-radius: 12px;
   padding: 1rem;
@@ -218,7 +238,7 @@
 
 .skill-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 24px var(--shadow);
 }
 
 .skill-card-header {
@@ -248,19 +268,19 @@
 .skill-technology {
   font-size: 1rem;
   font-weight: 600;
-  color: #f8fafc;
+  color: var(--text-bright);
   margin: 0 0 0.25rem;
 }
 
 .skill-meta {
   font-size: 0.8rem;
-  color: #94a3b8;
+  color: var(--text-muted);
   margin: 0;
 }
 
 .no-results {
   text-align: center;
-  color: #94a3b8;
+  color: var(--text-muted);
   padding: 3rem;
 }
 
@@ -268,7 +288,7 @@
 .footer {
   text-align: center;
   padding: 2rem;
-  color: #64748b;
+  color: var(--footer);
   font-size: 0.875rem;
 }
 
@@ -276,6 +296,13 @@
 @media (max-width: 640px) {
   .hero {
     padding: 2rem 1rem 1.5rem;
+  }
+
+  .theme-toggle {
+    top: 0.75rem;
+    right: 1rem;
+    padding: 0.4rem 0.75rem;
+    font-size: 0.8rem;
   }
 
   .filter-row {

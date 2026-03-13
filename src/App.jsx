@@ -1,6 +1,8 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { dezySkills, userProfile } from './data/skills'
 import './App.css'
+
+const THEME_KEY = 'dezy-portfolio-theme'
 
 const PROFICIENCY_COLORS = {
   Advanced: '#22c55e',
@@ -44,10 +46,21 @@ function SkillCard({ skill }) {
 }
 
 function App() {
+  const [theme, setTheme] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem(THEME_KEY) || 'dark'
+    }
+    return 'dark'
+  })
   const [search, setSearch] = useState('')
   const [domainFilter, setDomainFilter] = useState('all')
   const [proficiencyFilter, setProficiencyFilter] = useState('all')
   const [sortBy, setSortBy] = useState('years')
+
+  useEffect(() => {
+    localStorage.setItem(THEME_KEY, theme)
+    document.documentElement.setAttribute('data-theme', theme)
+  }, [theme])
 
   const domains = useMemo(() => {
     const d = [...new Set(dezySkills.map(s => s.domain))].sort()
@@ -92,8 +105,16 @@ function App() {
   return (
     <div className="app">
       <header className="hero">
-        <h1>Team Skills Portfolio</h1>
-        <p className="hero-subtitle">Expertise at a glance</p>
+        <button
+          className="theme-toggle"
+          onClick={() => setTheme(t => t === 'dark' ? 'light' : 'dark')}
+          aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+          title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+        >
+          {theme === 'dark' ? '☀️ Light' : '🌙 Dark'}
+        </button>
+        <h1>Dezy Jensen</h1>
+        <p className="hero-subtitle">Skills Portfolio · Expertise at a glance</p>
       </header>
 
       <section className="user-profile">
@@ -120,7 +141,7 @@ function App() {
       </section>
 
       <section className="team-member-section">
-        <h2>Dezy — Skills Overview</h2>
+        <h2>Skills Overview</h2>
         <div className="stats-grid">
           <div className="stat-card">
             <span className="stat-value">{stats.total}</span>
