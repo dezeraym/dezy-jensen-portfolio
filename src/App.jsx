@@ -151,25 +151,6 @@ function App() {
         <p className="hero-subtitle">{userProfile.tagline}</p>
       </header>
 
-      <section ref={projectsRef} className={`projects-section ${projectsVisible ? 'reveal' : ''}`}>
-        <h2>What I've Built</h2>
-        <div className="projects-grid">
-          {projects.map((project) => (
-            <TiltCard key={project.id} intensity={10}>
-            <article className="project-card">
-              <h3>{project.title}</h3>
-              <p>{project.description}</p>
-              <div className="project-tech">
-                {project.tech.map((t) => (
-                  <span key={t} className="project-tag">{t}</span>
-                ))}
-              </div>
-            </article>
-            </TiltCard>
-          ))}
-        </div>
-      </section>
-
       <section ref={aboutRef} className={`user-profile ${aboutVisible ? 'reveal' : ''}`}>
         <h2>About Me</h2>
         <div className="profile-card">
@@ -193,6 +174,25 @@ function App() {
               <li key={i}>{h}</li>
             ))}
           </ul>
+        </div>
+      </section>
+
+      <section ref={projectsRef} className={`projects-section ${projectsVisible ? 'reveal' : ''}`}>
+        <h2>What I've Built</h2>
+        <div className="projects-grid">
+          {projects.map((project) => (
+            <TiltCard key={project.id} intensity={10}>
+            <article className="project-card">
+              <h3>{project.title}</h3>
+              <p>{project.description}</p>
+              <div className="project-tech">
+                {project.tech.map((t) => (
+                  <span key={t} className="project-tag">{t}</span>
+                ))}
+              </div>
+            </article>
+            </TiltCard>
+          ))}
         </div>
       </section>
 
