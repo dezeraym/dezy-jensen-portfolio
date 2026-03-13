@@ -1,7 +1,9 @@
 import { useState, useMemo, useEffect, useRef } from 'react'
 import { dezySkills, userProfile, projects } from './data/skills'
 import StarsBackground from './components/StarsBackground'
+import CustomCursor from './components/CustomCursor'
 import TiltCard from './components/TiltCard'
+import AnimatedNumber from './components/AnimatedNumber'
 import useScrollReveal from './hooks/useScrollReveal'
 import './App.css'
 
@@ -135,6 +137,7 @@ function App() {
   return (
     <div className="app">
       <StarsBackground />
+      <CustomCursor />
       <main className="app-content">
       <header className="hero">
         <button
@@ -160,15 +163,15 @@ function App() {
 
         <div className="about-stats">
           <div className="about-stat">
-            <span className="about-stat-value">{userProfile.experience}</span>
-            <span className="about-stat-label">Experience</span>
+            <span className="about-stat-value"><AnimatedNumber value={5} duration={1000} /></span>
+            <span className="about-stat-label">Years Experience</span>
           </div>
           <div className="about-stat">
             <span className="about-stat-value">Physics</span>
             <span className="about-stat-label">Background</span>
           </div>
           <div className="about-stat">
-            <span className="about-stat-value">{userProfile.industries.length}</span>
+            <span className="about-stat-value"><AnimatedNumber value={userProfile.industries.length} duration={800} /></span>
             <span className="about-stat-label">Industries</span>
           </div>
           <div className="about-stat">
@@ -219,19 +222,19 @@ function App() {
         <h2 className="section-title">Skills Overview</h2>
         <div className="stats-grid">
           <div className="stat-card">
-            <span className="stat-value">{stats.total}</span>
+            <span className="stat-value"><AnimatedNumber value={stats.total} /></span>
             <span className="stat-label">Skills</span>
           </div>
           <div className="stat-card">
-            <span className="stat-value">{stats.advanced}</span>
+            <span className="stat-value"><AnimatedNumber value={stats.advanced} /></span>
             <span className="stat-label">Advanced</span>
           </div>
           <div className="stat-card">
-            <span className="stat-value">{stats.intermediate}</span>
+            <span className="stat-value"><AnimatedNumber value={stats.intermediate} /></span>
             <span className="stat-label">Intermediate</span>
           </div>
           <div className="stat-card">
-            <span className="stat-value">{stats.domains}</span>
+            <span className="stat-value"><AnimatedNumber value={stats.domains} /></span>
             <span className="stat-label">Domains</span>
           </div>
         </div>

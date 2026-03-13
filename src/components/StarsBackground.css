@@ -6,6 +6,51 @@
   overflow: hidden;
 }
 
+/* Galaxy / Nebula blobs */
+.galaxy {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.4;
+  animation: galaxyFloat 20s ease-in-out infinite;
+}
+
+.galaxy-1 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(88, 28, 135, 0.5) 0%, rgba(30, 58, 138, 0.3) 40%, transparent 70%);
+  top: -100px;
+  right: -100px;
+  animation-delay: 0s;
+}
+
+.galaxy-2 {
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(6, 95, 70, 0.3) 0%, rgba(30, 64, 175, 0.2) 50%, transparent 70%);
+  bottom: -80px;
+  left: -80px;
+  animation-delay: -10s;
+}
+
+@keyframes galaxyFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.4; }
+  33% { transform: translate(20px, -15px) scale(1.05); opacity: 0.5; }
+  66% { transform: translate(-15px, 20px) scale(0.95); opacity: 0.35; }
+}
+
+[data-theme="light"] .galaxy {
+  opacity: 0.25;
+}
+
+[data-theme="light"] .galaxy-1 {
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.2) 0%, rgba(139, 92, 246, 0.15) 40%, transparent 70%);
+}
+
+[data-theme="light"] .galaxy-2 {
+  background: radial-gradient(circle, rgba(34, 197, 94, 0.15) 0%, rgba(59, 130, 246, 0.1) 50%, transparent 70%);
+}
+
 .star {
   position: absolute;
   border-radius: 50%;

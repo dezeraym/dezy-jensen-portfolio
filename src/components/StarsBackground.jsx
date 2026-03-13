@@ -18,6 +18,8 @@ function StarsBackground() {
 
   return (
     <div className="stars-background" aria-hidden="true">
+      <div className="galaxy galaxy-1" />
+      <div className="galaxy galaxy-2" />
       {stars.map((star) => (
         <span
           key={star.id}

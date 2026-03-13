@@ -41,6 +41,18 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+body.cursor-custom {
+  cursor: none;
+}
+
+body.cursor-custom a,
+body.cursor-custom button,
+body.cursor-custom input,
+body.cursor-custom select,
+body.cursor-custom textarea {
+  cursor: none;
+}
+
 #root {
   min-height: 100vh;
 }
